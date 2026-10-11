@@ -1,0 +1,38 @@
+name: Android APK
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Gradle projesi var mi?
+        id: kontrol
+        run: |
+          if [ -f gradlew ]; then echo "var=true" >> "$GITHUB_OUTPUT"; else echo "var=false" >> "$GITHUB_OUTPUT"; fi
+      - if: steps.kontrol.outputs.var == 'true'
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '17'
+      - if: steps.kontrol.outputs.var == 'true'
+        uses: android-actions/setup-android@v4
+      - if: steps.kontrol.outputs.var == 'true'
+        uses: gradle/actions/setup-gradle@v6
+        with:
+          gradle-version: '9.6.0'
+      - name: Debug APK derle
+        if: steps.kontrol.outputs.var == 'true'
+        run: |
+          if [ -f gradlew ]; then chmod +x gradlew && ./gradlew assembleDebug --no-daemon; else gradle assembleDebug --no-daemon; fi
+      - if: steps.kontrol.outputs.var == 'true'
+        uses: actions/upload-artifact@v7
+        with:
+          name: app-debug-apk
+          path: '**/build/outputs/apk/debug/*.apk'
+      - if: steps.kontrol.outputs.var == 'false'
+        run: echo "::notice::gradlew yok - Gradle projesi henuz kurulmadi."
