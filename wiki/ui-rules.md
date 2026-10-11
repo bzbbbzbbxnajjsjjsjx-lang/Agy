@@ -11,7 +11,6 @@ claims:
     verified_at: 2026-10-11
     review_at: 2027-01-10
     confidence: VERIFIED
-    status: "AYNI (kaynak düzeltildi)"
     evidence: "The androidx.compose.material.icons library is no longer recommended... removed from the latest Material 3 library release"
 
   - id: claim-ui-material-symbols-xml
@@ -20,7 +19,6 @@ claims:
     verified_at: 2026-10-11
     review_at: 2027-01-10
     confidence: VERIFIED
-    status: "AYNI (kaynak düzeltildi)"
     evidence: "we recommend downloading a Vector Drawable XML file from the Android tab of https://fonts.google.com/icons to get access to the latest styled icons: Material Symbols."
 
   - id: claim-ui-theme-raw-values
@@ -29,7 +27,6 @@ claims:
     verified_at: null
     review_at: 2027-01-10
     confidence: PROJE_KARARI
-    status: "PROJE KARARI"
     evidence: "Dahili tasarım sistemi ve token izolasyonu kuralı; dış doğrulama iddia edilmez."
 
   - id: claim-ui-mandatory-preview
@@ -38,7 +35,6 @@ claims:
     verified_at: null
     review_at: 2027-01-10
     confidence: PROJE_KARARI
-    status: "PROJE KARARI"
     evidence: "kaynak özelliği tanıtıyor, zorunluluk bizim kararımız"
 
   - id: claim-ui-strings-xml
@@ -47,7 +43,6 @@ claims:
     verified_at: null
     review_at: 2027-01-10
     confidence: PROJE_KARARI
-    status: "PROJE KARARI"
     evidence: "kaynak özelliği tanıtıyor, zorunluluk bizim kararımız"
 ---
 

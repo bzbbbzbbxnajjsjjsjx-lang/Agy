@@ -8,6 +8,7 @@ Tüm wiki/*.md notlarındaki claims listelerini okur, durumlarını analiz eder.
 import os
 import glob
 import re
+import sys
 from datetime import date
 
 def parse_frontmatter_claims(content):
@@ -42,8 +43,8 @@ def parse_frontmatter_claims(content):
         claims.append(c)
     return claims
 
-def load_claims():
-    wiki_files = sorted(glob.glob('wiki/*.md'))
+def load_claims(target_dir='wiki'):
+    wiki_files = sorted(glob.glob(os.path.join(target_dir, '*.md')))
     all_claims = []
     
     for fpath in wiki_files:
@@ -60,19 +61,21 @@ def load_claims():
     return all_claims
 
 def main():
+    target_dir = sys.argv[1] if len(sys.argv) > 1 else 'wiki'
     today = date.today().isoformat()
-    claims = load_claims()
+    claims = load_claims(target_dir)
     
     total = len(claims)
     kontrol_edilen = 0
+    celiski = 0
     proje_karari = 0
     inferred = 0
     unverified = 0
     bayat = 0
     
     print(f"=== WIKI İDDİA (CLAIM) DOĞRULAMA DURUMU ({today}) ===")
-    print(f"{'İddia ID':<35} | {'Güven / Durum':<20} | {'verified_at':<12} | {'Bulunduğu Not'}")
-    print("-" * 100)
+    print(f"{'İddia ID':<35} | {'Güven / Durum':<25} | {'verified_at':<12} | {'Bulunduğu Not'}")
+    print("-" * 105)
     
     for c in claims:
         cid = c.get('id', 'unknown')
@@ -82,30 +85,47 @@ def main():
         rat = str(c.get('review_at') or '-')
         fpath = c.get('file', '')
         
-        if rat != '-' and rat < today:
-            is_stale = " (BAYAT)"
+        is_stale = (rat != '-' and rat < today)
+        if is_stale:
             bayat += 1
+            stale_tag = " (BAYAT)"
         else:
-            is_stale = ""
+            stale_tag = ""
             
-        if conf == 'VERIFIED' and src:
-            kontrol_edilen += 1
+        # Çelişki kontrolü: VERIFIED ama source_url yok
+        if conf == 'VERIFIED' and not src:
+            display_status = "VERIFIED (KAYNAK YOK!)"
+            celiski += 1
+        elif conf == 'VERIFIED' and src:
+            display_status = "VERIFIED"
+            if not is_stale:
+                kontrol_edilen += 1
         elif conf == 'PROJE_KARARI':
+            display_status = "PROJE_KARARI"
             proje_karari += 1
         elif conf == 'INFERRED':
+            display_status = "INFERRED"
             inferred += 1
         else:
+            display_status = "UNVERIFIED"
             unverified += 1
             
-        print(f"{cid:<35} | {conf:<20} | {vat:<12} | {fpath}{is_stale}")
+        print(f"{cid:<35} | {display_status:<25} | {vat:<12} | {fpath}{stale_tag}")
         
-    print("-" * 100)
+    print("-" * 105)
     print(f"Kontrol edilen iddia: {kontrol_edilen} / toplam: {total}")
-    print(f"Resmî Kaynaklı (VERIFIED): {kontrol_edilen}")
+    print(f"Resmî Kaynaklı ve Güncel (VERIFIED): {kontrol_edilen}")
     print(f"Dahili Karar (PROJE_KARARI): {proje_karari}")
     print(f"Mantıksal Çıkarım (INFERRED): {inferred}")
     print(f"Doğrulanmamış (UNVERIFIED): {unverified}")
-    print(f"Bayat İddia: {bayat}")
+    print(f"Bayat İddia Sayısı: {bayat}")
+    print(f"Çelişki Sayısı (Kaynaksız VERIFIED): {celiski}")
+    
+    if celiski > 0:
+        print(f"\nHATA: {celiski} adet iddiada kaynak olmadan VERIFIED güven düzeyi atanmış (ÇELİŞKİ).")
+        sys.exit(1)
+        
+    sys.exit(0)
 
 if __name__ == '__main__':
     main()

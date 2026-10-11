@@ -51,7 +51,6 @@ claims:
     verified_at: null
     review_at: 2027-01-10
     confidence: PROJE_KARARI
-    status: "PROJE KARARI"
     evidence: "Depo içi main-thread hijyeni ve performans kabul standardı; dış doğrulama iddia edilmez."
 
   - id: claim-rule-version-catalog
@@ -60,7 +59,6 @@ claims:
     verified_at: null
     review_at: 2027-01-10
     confidence: PROJE_KARARI
-    status: "PROJE KARARI"
     evidence: "Depo içi bağımlılık tekilleştirme standardı."
 
   - id: claim-rule-compose-bom-platform
@@ -69,7 +67,6 @@ claims:
     verified_at: null
     review_at: 2027-01-10
     confidence: PROJE_KARARI
-    status: "PROJE KARARI"
     evidence: "Depo içi sürüm çakışması engelleme standardı."
 
   - id: claim-rule-state-preservation
@@ -78,7 +75,6 @@ claims:
     verified_at: null
     review_at: 2027-01-10
     confidence: PROJE_KARARI
-    status: "PROJE KARARI"
     evidence: "Depo içi durum sürekliliği kabul kriteri."
 
   - id: claim-rule-assemble-debug
@@ -87,7 +83,6 @@ claims:
     verified_at: null
     review_at: 2027-01-10
     confidence: PROJE_KARARI
-    status: "PROJE KARARI"
     evidence: "Değişmez kural 3 gereği derleme doğrulaması standardı."
 ---
 

@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Agy</string>
-    <string name="main_title">Agy Android Sistemi</string>
-    <string name="main_subtitle">Aşama B İskeleti Başarıyla Kuruldu</string>
-    <string name="main_description">Jetpack Compose, Material 3 ve sabitlenmiş sürümler devrede.</string>
+    <string name="notes_title">Notlar</string>
+    <string name="settings_title">Ayarlar</string>
+    <string name="note_input_hint">Yeni not yazın…</string>
+    <string name="add_note">Ekle</string>
+    <string name="delete_note">Sil</string>
+    <string name="empty_notes">Henüz kaydedilmiş not bulunmuyor.</string>
+    <string name="back">Geri</string>
+    <string name="theme_selection_title">Tema Seçimi</string>
+    <string name="theme_system">Sistem Varsayılanı</string>
+    <string name="theme_light">Açık Tema</string>
+    <string name="theme_dark">Koyu Tema</string>
 </resources>

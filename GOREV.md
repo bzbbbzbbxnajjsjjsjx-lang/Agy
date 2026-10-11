@@ -1,24 +1,26 @@
-# Görev: Aşama A — Bağlam Sistemi Kurulumu
+# Görev: Aşama D — Not Uygulaması
 
 ## Görev Özeti
-Bu deponun amacı, "bağlam + wiki + döngü" altyapısını kurarak disiplinli bir Android geliştirme ortamı sağlamaktır. Aşama A kapsamında uygulama kodu yazılmadan yalnızca sistem iskeleti oluşturulmuştur:
+Aşama A, B, C tamamlandıktan sonra bu aşamada aşağıdaki adımlar uygulanır:
 
-1. **Kuşak (Harness):** `AGENTS.md` (6 değişmez kural ve döngü tanımıyla, YAML frontmatter olmadan).
-2. **Kanonik LLM Wiki:**
-   - `wiki/android-stack.md`: Sabitlenmiş sürümler ve resmî kaynaklar matrisi.
-   - `wiki/ui-rules.md`: Material Symbols zorunluluğu, token kullanımı ve UI yasakları.
-   - `wiki/kabul-kriterleri.md`: libs.versions.toml zorunluluğu, compose-bom ve mimari kurallar.
-3. **Koşullu Kurallar (`.agents/rules/`):**
-   - `surum.md`: Sürüm ve bağımlılık kararlarında `wiki/android-stack.md` dahil edilir.
-   - `ui.md`: UI ve Compose yazımında `wiki/ui-rules.md` dahil edilir.
-4. **Ajan Becerileri (`.agents/skills/`):**
-   - `baglam/SKILL.md`: İlgili wiki notlarını ve görevi okuyup teknik brief üretir.
-   - `tazele/SKILL.md`: Wiki notlarının resmî kaynaklarını kontrol edip doğrular/günceller.
-5. **Teknik Brief Şablonu:** `briefs/README.md`.
-6. **CI/CD Derleme İşi:** `.github/workflows/android-apk.yml` (gradlew kontrolü ve APK derleme adımları).
+1. **D0 — Kontrol Script'i (`scripts/check_claims.py`):**
+   - Bayat VERIFIED iddia "kontrol edilen" sayısına dahil edilmez.
+   - Kaynaksız VERIFIED iddia "VERIFIED (KAYNAK YOK!)" ve ÇELİŞKİ sayılır; çıkış kodu 1 döner.
+   - Wiki frontmatter'larından mükerrer `status:` alanı silindi; yalnızca `confidence` okunur.
+   - `.github/workflows/android-apk.yml` içine derleme öncesi `Wiki iddia kontrolu` adımı eklendi.
+   - Script `$HOME` altındaki geçici notla test edildi.
+2. **D1 — Brief Güncellemesi (`briefs/2026-10-12-not-uygulamasi.md`):**
+   - Ham renk ve dp/sp kuralı güncellendi (ham değer YALNIZ `ui/theme/` altında).
+   - "Depolama yaklaşımı" (filesDir + org.json + SharedPreferences) eklendi.
+3. **D2 — Not Uygulaması Geliştirmesi:**
+   - Ana ekran: Not listesi (`LazyColumn`), not ekleme (metin alanı + "Ekle" butonu), not silme.
+   - Ayarlar ekranı: Tema seçimi (Sistem / Açık / Koyu, anında uygulanır).
+   - Depolama: `filesDir/notes.json` (`org.json`), SharedPreferences (`ThemePreference`), I/O `Dispatchers.IO` üzerinde.
+   - Ekran rotasyonunda yazılan metin korunur (`rememberSaveable`).
+   - İkon yerine metin butonları, `strings.xml` ve `Dimens` token kullanımı.
+   - Bağımlılıklar: `lifecycle-viewmodel-compose` ve `lifecycle-runtime-compose` (`2.11.0`).
 
-## Bitince Çalıştırılacak Komut
-Aşama A tamamlandığında değişiklikleri depoya işlemek ve göndermek için:
+## Bitirme Komutu
 ```bash
-git add -A && git commit -m "Asama A: baglam sistemi" && git push
+git add -A && git commit -m "Asama D: not uygulamasi + script duzeltmeleri" && git push
 ```

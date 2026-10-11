@@ -13,7 +13,6 @@ claims:
     verified_at: 2026-10-11
     review_at: 2027-01-10
     confidence: VERIFIED
-    status: VERIFIED
     evidence: "Android Gradle plugin 9.4.0 (September 2026)"
 
   - id: claim-gradle-version
@@ -22,7 +21,6 @@ claims:
     verified_at: 2026-10-11
     review_at: 2027-01-10
     confidence: VERIFIED
-    status: VERIFIED
     evidence: "<td align=\"center\">9.6.0</td>"
 
   - id: claim-jdk-version
@@ -31,7 +29,6 @@ claims:
     verified_at: 2026-10-11
     review_at: 2027-01-10
     confidence: VERIFIED
-    status: VERIFIED
     evidence: "JDK 17 17 To learn more, see setting the JDK version"
 
   - id: claim-kotlin-version
@@ -40,7 +37,6 @@ claims:
     verified_at: 2026-10-11
     review_at: 2027-01-10
     confidence: VERIFIED
-    status: VERIFIED
     evidence: "To update to Kotlin 2.4.21, change the version of the Kotlin plugin"
 
   - id: claim-compose-bom
@@ -49,7 +45,6 @@ claims:
     verified_at: 2026-10-11
     review_at: 2027-01-10
     confidence: VERIFIED
-    status: VERIFIED
     evidence: "<option selected>2026.09.00</option> (Compose 1.12.1 eşlemesi)"
 
   - id: claim-material3-version
@@ -58,7 +53,6 @@ claims:
     verified_at: 2026-10-11
     review_at: 2027-01-10
     confidence: VERIFIED
-    status: VERIFIED
     evidence: "androidx.compose.material3:material3:1.4.0"
 
   - id: claim-material3-adaptive
@@ -67,7 +61,6 @@ claims:
     verified_at: 2026-10-11
     review_at: 2027-01-10
     confidence: VERIFIED
-    status: VERIFIED
     evidence: "androidx/versions dizini üzerinden bulundu: adaptive-*:1.3.0"
 
   - id: claim-core-ktx
@@ -76,7 +69,6 @@ claims:
     verified_at: 2026-10-11
     review_at: 2027-01-10
     confidence: VERIFIED
-    status: VERIFIED
     evidence: "androidx.core:core:1.19.1"
 
   - id: claim-lifecycle
@@ -85,7 +77,6 @@ claims:
     verified_at: 2026-10-11
     review_at: 2027-01-10
     confidence: VERIFIED
-    status: VERIFIED
     evidence: "androidx/releases/lifecycle#2.11.0"
 
   - id: claim-activity
@@ -94,7 +85,6 @@ claims:
     verified_at: 2026-10-11
     review_at: 2027-01-10
     confidence: VERIFIED
-    status: VERIFIED
     evidence: "androidx.activity:activity-compose:1.13.0"
 
   - id: claim-compile-target-sdk
@@ -103,7 +93,6 @@ claims:
     verified_at: null
     review_at: 2027-01-10
     confidence: PROJE_KARARI
-    status: "PROJE KARARI"
     evidence: "Sayfada 'AGP 9.4 supports API level 37' desteği teyitli; 37 seçimi proje kararıdır."
 
   - id: claim-min-sdk
@@ -112,7 +101,6 @@ claims:
     verified_at: null
     review_at: 2027-01-10
     confidence: PROJE_KARARI
-    status: "PROJE KARARI"
     evidence: "Depo içi hedef kitle kararı, dış doğrulama yok."
 ---
 
