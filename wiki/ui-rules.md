@@ -2,7 +2,7 @@
 title: UI Kuralları ve Yasaklar
 tags: [ui, yasak]
 source_url: https://developer.android.com/jetpack/androidx/releases/compose-material3
-verified_at: 2026-10-12
+verified_at: 2026-10-11
 review_at: 2027-01-10
 confidence: VERIFIED
 ---

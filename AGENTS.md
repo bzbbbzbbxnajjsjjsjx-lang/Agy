@@ -5,7 +5,7 @@ Bu depo, Android uygulamaları üretmek amacıyla tasarlanmış; bağlam, kanoni
 ## Değişmez Kurallar
 
 1. **SÜRÜM NUMARASI HAFIZADAN YAZILMAZ.** Eğitim verin eskidir. Yalnız bu dosyadaki ya da `wiki/` içindeki kaynaklı değerleri kullan. Kaynağı yoksa "bu bilgi wiki'de yok" de, uydurma.
-2. **Her wiki notunda `source_url`, `verified_at`, `review_at` ZORUNLU.** Kaynağı olmayan bilgi `confidence: VERIFIED` olamaz; en fazla `UNVERIFIED` olur.
+2. **Her wiki İDDİASINDA `source_url`, `verified_at`, `review_at` ZORUNLU.** Doğrulama ve tazelik kontrolleri kaba bir not bazında değil, **iddia (claim) düzeyinde atomik** yürütülür. Kaynağı olmayan iddia `confidence: VERIFIED` olamaz; en fazla `UNVERIFIED` olur.
 3. **DOĞRULAMADIĞINI DOĞRULANMIŞ GİBİ YAZMA.** Derlemediysen "derlemedim" yaz. Test çalıştırmadıysan "test etmedim" yaz. Emin olmadığın şeyi "oldu" diye kapatma.
 4. **AYNI BİLGİYİ İKİ YERE YAZMA.** Tek kopya. İkinci kopya zamanla ayrışır.
 5. **Uzun metni terminale yapıştırmıyorum.** Talimatları dosyadan oku.
@@ -32,7 +32,7 @@ görev → bağlam → brief → uygula → doğrula → wiki'ye yaz
 
 ## Yeni Bilgi Nasıl Girer
 
-- Yeni bir Android bilgisi öğrendiysen (sürüm, API değişikliği, kaldırılan özellik), `wiki/` altına not olarak yaz. Kaynak linki (`source_url`) + tarih (`verified_at`, `review_at`) ZORUNLU.
-- Kaynağı olmayan bilgi `confidence: UNVERIFIED` olarak girer ve brief'lerde "doğrulanmamış" etiketiyle çıkar.
-- Aynı konuda not varsa yenisini yaz, eskisine `superseded_by: <yeni-slug>` ekle.
+- Yeni bir Android bilgisi öğrendiysen (sürüm, API değişikliği, kaldırılan özellik), ilgili `wiki/` notuna atomik bir `claim` (iddia) olarak ekle. İddia bazında kaynak linki (`source_url`) + tarih (`verified_at`, `review_at`) ZORUNLU.
+- Kaynağı olmayan iddia `confidence: UNVERIFIED` olarak girer ve brief'lerde "doğrulanmamış" etiketiyle çıkar.
+- Aynı konuda iddia güncellenirse yenisini ekle, eskisine `superseded_by: <yeni-iddia-id>` ata.
 
