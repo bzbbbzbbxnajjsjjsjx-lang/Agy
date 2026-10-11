@@ -29,3 +29,10 @@ görev → bağlam → brief → uygula → doğrula → wiki'ye yaz
 - Sürüm veya bağımlılık sorusu gelirse önce `wiki/android-stack.md` oku.
 - UI yazacaksan önce `wiki/ui-rules.md` oku.
 - Kabul kriterleri ve kalite kontrolleri için `wiki/kabul-kriterleri.md` oku.
+
+## Yeni Bilgi Nasıl Girer
+
+- Yeni bir Android bilgisi öğrendiysen (sürüm, API değişikliği, kaldırılan özellik), `wiki/` altına not olarak yaz. Kaynak linki (`source_url`) + tarih (`verified_at`, `review_at`) ZORUNLU.
+- Kaynağı olmayan bilgi `confidence: UNVERIFIED` olarak girer ve brief'lerde "doğrulanmamış" etiketiyle çıkar.
+- Aynı konuda not varsa yenisini yaz, eskisine `superseded_by: <yeni-slug>` ekle.
+

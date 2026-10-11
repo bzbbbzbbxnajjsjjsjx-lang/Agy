@@ -1,7 +1,7 @@
 ---
 title: UI Kuralları ve Yasaklar
 tags: [ui, yasak]
-source_url: https://m3.material.io/blog/material-is-compose-first
+source_url: https://developer.android.com/jetpack/androidx/releases/compose-material3
 verified_at: 2026-10-12
 review_at: 2027-01-10
 confidence: VERIFIED

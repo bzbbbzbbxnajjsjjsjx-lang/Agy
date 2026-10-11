@@ -1,13 +1,24 @@
 ---
 name: durum
-description: Deponun genel durumunu (git, CI/CD, aktif görev ve wiki doğrulama durumlarını) raporlar.
+description: Wiki'nin tazelik durumunu gösterir ve notların geçerlilik tablosunu üretir.
 ---
 
-# Durum Raporlama Yeteneği
+# Durum Komutu Talimatı
 
-Bu skill, projenin mevcut durumunu tek bir raporda konsolide etmek için kullanılır:
+Bu skill yalnızca okuma yapar, hiçbir dosyayı değiştirmez.
 
-1. **Git Durumu:** Aktif dal, son commit hash'i ve çalışma ağacı temizliği (`git status`, `git log -n 1`).
-2. **CI/CD Durumu:** GitHub Actions son derleme sonucu, çalışma süresi ve artifact varlığı (`gh run list`).
-3. **Görev Durumu:** `GOREV.md` dosyasındaki mevcut aşama ve açık kalan adımlar.
-4. **Wiki Durumu:** `wiki/` altındaki kanonik notlar, doğrulama tarihleri (`verified_at`) ve güven dereceleri (`confidence`).
+## Yapılacak İşlemler
+
+1. `wiki/` dizini altındaki tüm notları (`*.md`, `README.md` hariç) oku.
+2. Her notun frontmatter alanlarını analiz et ve şu sütunlardan oluşan bir tablo üret:
+   - **not**: Dosya adı veya slug (ör. `wiki/android-stack.md`)
+   - **confidence**: `VERIFIED` | `INFERRED` | `UNVERIFIED`
+   - **source_url var mı**: Evet / Hayır
+   - **verified_at**: En son doğrulama tarihi
+   - **review_at**: Yeniden gözden geçirme tarihi
+   - **BAYAT mı**: `bugün > review_at` ise `EVET (BAYAT)`, değilse `HAYIR (GÜNCEL)`
+3. Tablonun altına özet istatistikleri ekle:
+   - Kaç not `VERIFIED`?
+   - Kaç not kaynaksız?
+   - Kaç not bayat?
+4. **KURAL:** Hiçbir şeyi DEĞİŞTİRME — bu komut sadece okur ve raporlar.
