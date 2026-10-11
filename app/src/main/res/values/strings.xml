@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Agy</string>
+    <string name="main_title">Agy Android Sistemi</string>
+    <string name="main_subtitle">Aşama B İskeleti Başarıyla Kuruldu</string>
+    <string name="main_description">Jetpack Compose, Material 3 ve sabitlenmiş sürümler devrede.</string>
+</resources>
