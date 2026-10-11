@@ -2,7 +2,7 @@
 title: UI Kuralları ve Yasaklar
 tags: [ui, yasak]
 last_reviewed: 2026-10-11
-confidence: VERIFIED
+confidence: INFERRED
 verification_mode: claim_level
 claims:
   - id: claim-ui-no-material-icons
@@ -23,23 +23,14 @@ claims:
     status: "AYNI (kaynak düzeltildi)"
     evidence: "we recommend downloading a Vector Drawable XML file from the Android tab of https://fonts.google.com/icons to get access to the latest styled icons: Material Symbols."
 
-  - id: claim-ui-no-raw-hex
-    claim: "Bileşenlerde doğrudan ham hex renk kodları (Color(0xFF...)) kullanılamaz; MaterialTheme.colorScheme semantik rolleri kullanılır."
-    source_url: https://m3.material.io/blog/material-is-compose-first
-    verified_at: 2026-10-11
+  - id: claim-ui-theme-raw-values
+    claim: "Ham renk (Color(0xFF..)) ve ham dp/sp YALNIZ ui/theme/ altında tanımlanır (Color.kt, Type.kt, Dimens.kt). Composable'ların içinde yasak; oralarda MaterialTheme.colorScheme / MaterialTheme.typography / Dimens kullanılır."
+    source_url: PROJE_KARARI
+    verified_at: null
     review_at: 2027-01-10
-    confidence: VERIFIED
-    status: VERIFIED
-    evidence: "Material 3 color roles and tokens"
-
-  - id: claim-ui-token-spacing
-    claim: "Ham dp/sp sabitleri kod içine serbestçe gömülemez; tasarım sistemi ve tema tokenları üzerinden kullanılır."
-    source_url: https://m3.material.io/blog/material-is-compose-first
-    verified_at: 2026-10-11
-    review_at: 2027-01-10
-    confidence: VERIFIED
-    status: VERIFIED
-    evidence: "Spacing, typography and shape tokens standard"
+    confidence: PROJE_KARARI
+    status: "PROJE KARARI"
+    evidence: "Dahili tasarım sistemi ve token izolasyonu kuralı; dış doğrulama iddia edilmez."
 
   - id: claim-ui-mandatory-preview
     claim: "Oluşturulan her Composable fonksiyonun bağımsız bir @Preview fonksiyonu olmak zorundadır."
@@ -62,15 +53,26 @@ claims:
 
 # UI Kuralları ve Yasaklar
 
-Bu dosya, Jetpack Compose arayüz geliştirmelerinde uyulması zorunlu tasarım, token ve mimari yasaklarını iddia bazında içerir.
+Bu dosya, Jetpack Compose arayüz geliştirmelerinde uyulması zorunlu tasarım, token ve mimari kurallarını içerir.
 
-## İddia Bazlı Kural Tablosu
+---
 
-| İddia ID | Kural / Yasak | Kaynak (`source_url`) | Durum | `verified_at` |
-| :--- | :--- | :--- | :---: | :---: |
-| `claim-ui-no-material-icons` | `material-icons-*` kullanımı yasaktır (kaldırıldı). | `developer.android.com/jetpack/androidx/releases/compose-material3` | **AYNI (kaynak düzeltildi)** | 2026-10-11 |
-| `claim-ui-material-symbols-xml` | İkonlar Material Symbols Vector Drawable XML olarak `res/drawable` altına eklenir. | `developer.android.com/jetpack/androidx/releases/compose-material3` | **AYNI (kaynak düzeltildi)** | 2026-10-11 |
-| `claim-ui-no-raw-hex` | Ham hex `Color(0xFF...)` yasaktır; semantik renk rolleri kullanılır. | `m3.material.io/blog/material-is-compose-first` | `VERIFIED` | 2026-10-11 |
-| `claim-ui-token-spacing` | Ham `dp`/`sp` sabitleri yasaktır; tema ve ölçek tokenları kullanılır. | `m3.material.io/blog/material-is-compose-first` | `VERIFIED` | 2026-10-11 |
-| `claim-ui-mandatory-preview` | Her Composable için açık/koyu `@Preview` zorunludur. | `developer.android.com/develop/ui/compose/tooling/previews` | `VERIFIED` | 2026-10-11 |
-| `claim-ui-strings-xml` | Sabit metin (hardcoded) yasaktır; `stringResource(R.string...)` zorunludur. | `developer.android.com/guide/topics/resources/string-resource` | `VERIFIED` | 2026-10-11 |
+## 1. Resmî Kaynaklardan Doğrulanan Kurallar
+
+| İddia ID | Kural / İlke | Doğrulama Kaynağı | Durum | Doğrulama Notu |
+| :--- | :--- | :--- | :---: | :--- |
+| `claim-ui-no-material-icons` | `material-icons-*` kullanımı yasaktır (kaldırıldı). | `developer.android.com/jetpack/androidx/releases/compose-material3` | **AYNI (kaynak düzeltildi)** | Kütüphane sürüm notlarında resmi kaldırma duyurusu. |
+| `claim-ui-material-symbols-xml` | İkonlar Material Symbols XML olarak `res/drawable` altına eklenir. | `developer.android.com/jetpack/androidx/releases/compose-material3` | **AYNI (kaynak düzeltildi)** | fonts.google.com/icons yönlendirmesi teyitli. |
+| `claim-ui-mandatory-preview` | Her Composable için açık/koyu `@Preview` zorunludur. | `developer.android.com/develop/ui/compose/tooling/previews` | `VERIFIED` | Android Studio Compose Preview standartları. |
+| `claim-ui-strings-xml` | Sabit metin (hardcoded) yasaktır; `stringResource(R.string...)` zorunludur. | `developer.android.com/guide/topics/resources/string-resource` | `VERIFIED` | String Resources yerelleştirme standardı. |
+
+---
+
+## 2. Proje Kuralları (Dış Doğrulama Yok)
+
+| İddia ID | Kural İfadesi | Kaynak | Durum |
+| :--- | :--- | :---: | :---: |
+| `claim-ui-theme-raw-values` | **Ham renk (`Color(0xFF..)`) ve ham dp/sp YALNIZ `ui/theme/` altında tanımlanır (`Color.kt`, `Type.kt`, `Dimens.kt`). Composable'ların içinde yasak; oralarda `MaterialTheme.colorScheme` / `MaterialTheme.typography` / `Dimens` kullanılır.** | Proje kararı | `PROJE KARARI` |
+
+> [!IMPORTANT]
+> Ham renk ve ölçü kuralı deponun dahili token disiplinidir; dış doğrulama iddia edilmez.

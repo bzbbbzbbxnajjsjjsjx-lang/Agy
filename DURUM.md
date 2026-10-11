@@ -2,7 +2,7 @@
 
 **Tarih:** 2026-10-11 (`date -u +%F`)  
 **Doğrulama Mimarisi:** İddia (Claim) Düzeyinde Atomik Doğrulama  
-**Kontrol edilen iddia: 28 / toplam iddia: 28**
+**Kontrol edilen iddia: 27 / toplam iddia: 27**
 
 ---
 
@@ -32,8 +32,7 @@
 | :--- | :--- | :--- | :---: | :---: | :---: |
 | `claim-ui-no-material-icons` | `material-icons-*` kullanımı kaldırılmıştır, yasaktır. | `https://developer.android.com/jetpack/androidx/releases/compose-material3` | HTTP 200 | **AYNI (kaynak düzeltildi)** | 2026-10-11 |
 | `claim-ui-material-symbols-xml` | İkonlar Material Symbols XML olarak indirilir. | `https://developer.android.com/jetpack/androidx/releases/compose-material3` | HTTP 200 | **AYNI (kaynak düzeltildi)** | 2026-10-11 |
-| `claim-ui-no-raw-hex` | Ham hex `Color(0xFF...)` yasaktır, semantic token zorunludur. | `https://m3.material.io/blog/material-is-compose-first` | HTTP 200 | `VERIFIED` | 2026-10-11 |
-| `claim-ui-token-spacing` | Ham dp/sp yasaktır; tema spacing ve type tokenları kullanılır. | `https://m3.material.io/blog/material-is-compose-first` | HTTP 200 | `VERIFIED` | 2026-10-11 |
+| `claim-ui-theme-raw-values` | Ham renk ve dp/sp yalnızca `ui/theme/` altında tanımlanır, Composable'da yasaktır. | `PROJE_KARARI` | - | `PROJE KARARI` | - |
 | `claim-ui-mandatory-preview` | Her Composable için açık/koyu `@Preview` zorunludur. | `https://developer.android.com/develop/ui/compose/tooling/previews` | HTTP 200 | `VERIFIED` | 2026-10-11 |
 | `claim-ui-strings-xml` | Hardcoded metin yasaktır; strings.xml zorunludur. | `https://developer.android.com/guide/topics/resources/string-resource` | HTTP 200 | `VERIFIED` | 2026-10-11 |
 
@@ -55,22 +54,23 @@
 
 ## 2. Doğrulayamadıklarım (BULUNAMADI / ERİŞİLEMEDİ)
 
-- **Harici Kaynakta Bulunamayan veya Erişilemeyen:** `0` (Taranan 23 dış kaynak iddiasının tamamına HTTP 200 ile erişildi ve sayfa metninde teyit edildi).
-- **Harici Doğrulamaya Tabi Tutulmayan Proje Kararları (5 iddia):**
+- **Harici Kaynakta Bulunamayan veya Erişilemeyen:** `0` (Taranan 21 dış kaynak iddiasının tamamına HTTP 200 ile erişildi ve sayfa metninde teyit edildi).
+- **Harici Doğrulamaya Tabi Tutulmayan Proje Kararları (6 iddia):**
   1. `claim-min-sdk`: minSdk 24 tercihi.
-  2. `claim-rule-version-catalog`: `libs.versions.toml` tekillik kuralı.
-  3. `claim-rule-compose-bom-platform`: BOM platform zorunluluğu.
-  4. `claim-rule-state-preservation`: rememberSaveable / StateFlow kuralı.
-  5. `claim-rule-assemble-debug`: assembleDebug doğrulama kuralı.
+  2. `claim-ui-theme-raw-values`: Ham renk ve dp/sp değerlerinin yalnızca `ui/theme/` içinde tutulması kuralı.
+  3. `claim-rule-version-catalog`: `libs.versions.toml` tekillik standardı.
+  4. `claim-rule-compose-bom-platform`: BOM platform zorunluluğu standardı.
+  5. `claim-rule-state-preservation`: rememberSaveable / StateFlow standardı.
+  6. `claim-rule-assemble-debug`: assembleDebug derleme standardı.
 
 ---
 
 ## 3. İstatistikler ve Takvim
 
-- **Toplam İddia Sayısı:** 28
-- **Doğrulanan Harici İddia (`VERIFIED`):** 21
+- **Toplam İddia Sayısı:** 27
+- **Doğrulanan Harici İddia (`VERIFIED`):** 19
 - **Kaynağı Düzeltilip Doğrulanan (`AYNI (kaynak düzeltildi)`):** 2
-- **Dahili Proje Kararı (`PROJE KARARI`):** 5
+- **Dahili Proje Kararı (`PROJE KARARI`):** 6
 - **Bulunamayan / Erişilemeyen (`BULUNAMADI / ERİŞİLEMEDİ`):** 0
 - **Bayat İddia Sayısı (`bugün > review_at`):** 0
 - **Bir Sonraki Yeniden İnceleme (`review_at`):** `2027-01-10`
