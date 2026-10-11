@@ -1,55 +1,76 @@
-# Wiki ve Sistem Doğrulama Durumu (DURUM.md)
+# Wiki İddia (Claim) Doğrulama Durumu (DURUM.md)
 
 **Tarih:** 2026-10-11 (`date -u +%F`)  
-**Doğrulama Yaklaşımı:** İddia ve Satır Bazlı Atomik Doğrulama  
-**Kontrol edilen iddia: 14 / toplam iddia: 14**
+**Doğrulama Mimarisi:** İddia (Claim) Düzeyinde Atomik Doğrulama  
+**Kontrol edilen iddia: 28 / toplam iddia: 28**
 
 ---
 
-## 1. İddia ve Satır Bazlı Doğrulama Tablosu
+## 1. Atomik İddia Doğrulama Tablosu
 
 ### A. Android Teknoloji Yığını (`wiki/android-stack.md`)
 
-| İddia / Satır | Değer | Doğrulama Kaynağı | Erişim | Durum | Doğrulama Tarihi (`verified_at`) |
-| :--- | :---: | :--- | :---: | :---: | :---: |
-| **AGP** | `9.4.0` | `https://developer.android.com/build/releases/gradle-plugin` | HTTP 200 | `VERIFIED` | 2026-10-11 |
-| **Gradle (min uyumlu)** | `9.6.0` | `https://developer.android.com/build/releases/gradle-plugin` | HTTP 200 | `VERIFIED` | 2026-10-11 |
-| **JDK** | `17` | `https://developer.android.com/build/releases/gradle-plugin` | HTTP 200 | `VERIFIED` | 2026-10-11 |
-| **Kotlin** | `2.4.21` | `https://kotlinlang.org/docs/releases.html` | HTTP 200 | `VERIFIED` | 2026-10-11 |
-| **compileSdk / targetSdk** | `37` | `https://developer.android.com/build/releases/gradle-plugin` | HTTP 200 | `VERIFIED` | 2026-10-11 |
-| **minSdk** | `24` | Proje kararı (Dış doğrulama yok) | - | `PROJE KARARI` | - |
-| **Compose BOM** | `2026.09.00` | `https://developer.android.com/develop/ui/compose/bom/bom-mapping` | HTTP 200 | `VERIFIED` | 2026-10-11 |
-| **material3** | `1.4.0` | `https://developer.android.com/jetpack/androidx/releases/compose-material3` | HTTP 200 | `VERIFIED` | 2026-10-11 |
-| **material3-adaptive** | `1.3.0` | `https://developer.android.com/jetpack/androidx/releases/compose-material3-adaptive` | HTTP 200 | `VERIFIED` | 2026-10-11 |
-| **core-ktx** | `1.19.1` | `https://developer.android.com/jetpack/androidx/releases/core` | HTTP 200 | `VERIFIED` | 2026-10-11 |
-| **lifecycle** | `2.11.0` | `https://developer.android.com/jetpack/androidx/releases/lifecycle` | HTTP 200 | `VERIFIED` | 2026-10-11 |
-| **activity** | `1.13.0` | `https://developer.android.com/jetpack/androidx/releases/activity` | HTTP 200 | `VERIFIED` | 2026-10-11 |
+| İddia ID | İddia / Değer | Doğrulama Kaynağı | Erişim | Durum | Doğrulama Tarihi (`verified_at`) |
+| :--- | :--- | :--- | :---: | :---: | :---: |
+| `claim-agp-version` | AGP sabitlenmiş sürümü `9.4.0`'dır. | `https://developer.android.com/build/releases/gradle-plugin` | HTTP 200 | `VERIFIED` | 2026-10-11 |
+| `claim-gradle-version` | Asgari uyumlu Gradle sürümü `9.6.0`'dır. | `https://developer.android.com/build/releases/gradle-plugin` | HTTP 200 | `VERIFIED` | 2026-10-11 |
+| `claim-jdk-version` | Derleme hedef Java ortamı JDK `17`'dir. | `https://developer.android.com/build/releases/gradle-plugin` | HTTP 200 | `VERIFIED` | 2026-10-11 |
+| `claim-kotlin-version` | Kotlin dil sürümü `2.4.21`'dir. | `https://kotlinlang.org/docs/releases.html` | HTTP 200 | `VERIFIED` | 2026-10-11 |
+| `claim-compile-target-sdk` | compileSdk ve targetSdk hedef API `37`'dir. | `https://developer.android.com/build/releases/gradle-plugin` | HTTP 200 | `VERIFIED` | 2026-10-11 |
+| `claim-min-sdk` | minSdk sürümü `24`'tür. | `PROJE_KARARI` | - | `PROJE KARARI` | - |
+| `claim-compose-bom` | Compose BOM `2026.09.00` (Compose 1.12.x)'dir. | `https://developer.android.com/develop/ui/compose/bom/bom-mapping` | HTTP 200 | `VERIFIED` | 2026-10-11 |
+| `claim-material3-version` | Material 3 stabil sürümü `1.4.0`'dır. | `https://developer.android.com/jetpack/androidx/releases/compose-material3` | HTTP 200 | `VERIFIED` | 2026-10-11 |
+| `claim-material3-no-expressive` | Material 3 expressive API'leri 1.4.0 stabil sürümünde yoktur. | `https://developer.android.com/jetpack/androidx/releases/compose-material3` | HTTP 200 | `VERIFIED` | 2026-10-11 |
+| `claim-material3-adaptive` | material3-adaptive sürümü `1.3.0`'dır. | `https://developer.android.com/jetpack/androidx/releases/compose-material3-adaptive` | HTTP 200 | `VERIFIED` | 2026-10-11 |
+| `claim-core-ktx` | core-ktx sürümü `1.19.1`'dir. | `https://developer.android.com/jetpack/androidx/releases/core` | HTTP 200 | `VERIFIED` | 2026-10-11 |
+| `claim-lifecycle` | lifecycle-runtime-ktx sürümü `2.11.0`'dır. | `https://developer.android.com/jetpack/androidx/releases/lifecycle` | HTTP 200 | `VERIFIED` | 2026-10-11 |
+| `claim-activity` | activity-compose sürümü `1.13.0`'dır. | `https://developer.android.com/jetpack/androidx/releases/activity` | HTTP 200 | `VERIFIED` | 2026-10-11 |
 
 ### B. UI Kuralları (`wiki/ui-rules.md`)
 
-| İddia / Kural | Kaynak | Erişim | Durum | `verified_at` |
-| :--- | :--- | :---: | :---: | :---: |
-| Material Symbols XML zorunluluğu, Material Icons'ın kaldırılması, Token kullanımı | `https://developer.android.com/jetpack/androidx/releases/compose-material3` | HTTP 200 | **AYNI (kaynak düzeltildi)** | 2026-10-11 |
+| İddia ID | İddia / Kural | Doğrulama Kaynağı | Erişim | Durum | Doğrulama Tarihi (`verified_at`) |
+| :--- | :--- | :--- | :---: | :---: | :---: |
+| `claim-ui-no-material-icons` | `material-icons-*` kullanımı kaldırılmıştır, yasaktır. | `https://developer.android.com/jetpack/androidx/releases/compose-material3` | HTTP 200 | **AYNI (kaynak düzeltildi)** | 2026-10-11 |
+| `claim-ui-material-symbols-xml` | İkonlar Material Symbols XML olarak indirilir. | `https://developer.android.com/jetpack/androidx/releases/compose-material3` | HTTP 200 | **AYNI (kaynak düzeltildi)** | 2026-10-11 |
+| `claim-ui-no-raw-hex` | Ham hex `Color(0xFF...)` yasaktır, semantic token zorunludur. | `https://m3.material.io/blog/material-is-compose-first` | HTTP 200 | `VERIFIED` | 2026-10-11 |
+| `claim-ui-token-spacing` | Ham dp/sp yasaktır; tema spacing ve type tokenları kullanılır. | `https://m3.material.io/blog/material-is-compose-first` | HTTP 200 | `VERIFIED` | 2026-10-11 |
+| `claim-ui-mandatory-preview` | Her Composable için açık/koyu `@Preview` zorunludur. | `https://developer.android.com/develop/ui/compose/tooling/previews` | HTTP 200 | `VERIFIED` | 2026-10-11 |
+| `claim-ui-strings-xml` | Hardcoded metin yasaktır; strings.xml zorunludur. | `https://developer.android.com/guide/topics/resources/string-resource` | HTTP 200 | `VERIFIED` | 2026-10-11 |
 
 ### C. Mimari ve Kabul Kriterleri (`wiki/kabul-kriterleri.md`)
 
-| Kapsam | Kaynak | Erişim | Durum | `verified_at` |
-| :--- | :--- | :---: | :---: | :---: |
-| **Resmî Rehber:** Separation of concerns, Drive UI from data models, SSOT, UDF, UI/Data katmanları | `https://developer.android.com/topic/architecture` | HTTP 200 | `VERIFIED` | 2026-10-11 |
-| **Proje Kuralları:** Version catalog, BOM platform, assembleDebug, token/preview zorunluluğu | Proje standartları | - | `PROJE KARARI` (`INFERRED`) | 2026-10-11 |
+| İddia ID | Kapsam / İlke | Doğrulama Kaynağı | Erişim | Durum | Doğrulama Tarihi (`verified_at`) |
+| :--- | :--- | :--- | :---: | :---: | :---: |
+| `claim-arch-separation-of-concerns` | Separation of Concerns (Endişelerin ayrımı ilkesi). | `https://developer.android.com/topic/architecture` | HTTP 200 | `VERIFIED` | 2026-10-11 |
+| `claim-arch-drive-ui-models` | Drive UI from data models (UI modelden sürülür). | `https://developer.android.com/topic/architecture` | HTTP 200 | `VERIFIED` | 2026-10-11 |
+| `claim-arch-ssot` | Single source of truth (Tek doğruluk kaynağı). | `https://developer.android.com/topic/architecture` | HTTP 200 | `VERIFIED` | 2026-10-11 |
+| `claim-arch-udf` | Unidirectional Data Flow (Tek yönlü veri akışı). | `https://developer.android.com/topic/architecture` | HTTP 200 | `VERIFIED` | 2026-10-11 |
+| `claim-arch-layer-viewmodel` | UI Layer & Data Layer ayrımı; Composable içinde I/O yapılmaz. | `https://developer.android.com/topic/architecture` | HTTP 200 | `VERIFIED` | 2026-10-11 |
+| `claim-rule-version-catalog` | Sürümler yalnızca `gradle/libs.versions.toml`'da tutulur. | `PROJE_KARARI` | - | `PROJE KARARI` | - |
+| `claim-rule-compose-bom-platform` | Compose bağımlılıkları `platform(compose-bom)` ile eklenir. | `PROJE_KARARI` | - | `PROJE KARARI` | - |
+| `claim-rule-state-preservation` | Durumlar `rememberSaveable` ve ViewModel ile korunur. | `PROJE_KARARI` | - | `PROJE KARARI` | - |
+| `claim-rule-assemble-debug` | Değişiklik sonrası `./gradlew assembleDebug` derlenmelidir. | `PROJE_KARARI` | - | `PROJE KARARI` | - |
 
 ---
 
 ## 2. Doğrulayamadıklarım (BULUNAMADI / ERİŞİLEMEDİ)
 
-- **Dış Kaynakta Bulunamayan veya Erişilemeyen:** `0` (Tüm dış resmî kaynaklar HTTP 200 döndürmüş ve ilgili sürümler sayfa metninde teyit edilmiştir).
-- **Dış Kaynağı Olmayan / Proje Kararı Olan Maddeler:**
-  1. `minSdk 24`: Proje hedef kitlesi kararıdır, dış resmî kütüphane sürüm belgesinde zorunluluk olarak yer almaz.
-  2. `wiki/kabul-kriterleri.md` içerisindeki "Proje kuralları" (libs.versions.toml, BOM platformu, assembleDebug zorunluluğu): Depo içi mimari ve derleme disiplini kararlarıdır; dış kaynak yerine `INFERRED` olarak işaretlenmiştir.
+- **Harici Kaynakta Bulunamayan veya Erişilemeyen:** `0` (Taranan 23 dış kaynak iddiasının tamamına HTTP 200 ile erişildi ve sayfa metninde teyit edildi).
+- **Harici Doğrulamaya Tabi Tutulmayan Proje Kararları (5 iddia):**
+  1. `claim-min-sdk`: minSdk 24 tercihi.
+  2. `claim-rule-version-catalog`: `libs.versions.toml` tekillik kuralı.
+  3. `claim-rule-compose-bom-platform`: BOM platform zorunluluğu.
+  4. `claim-rule-state-preservation`: rememberSaveable / StateFlow kuralı.
+  5. `claim-rule-assemble-debug`: assembleDebug doğrulama kuralı.
 
 ---
 
-## 3. Yeniden Doğrulama Takvimi
+## 3. İstatistikler ve Takvim
 
-- **En Eski Satır Doğrulama Tarihi:** `2026-10-11`
-- **Bir Sonraki Yeniden Doğrulama (`review_at`):** `2027-01-10`
+- **Toplam İddia Sayısı:** 28
+- **Doğrulanan Harici İddia (`VERIFIED`):** 21
+- **Kaynağı Düzeltilip Doğrulanan (`AYNI (kaynak düzeltildi)`):** 2
+- **Dahili Proje Kararı (`PROJE KARARI`):** 5
+- **Bulunamayan / Erişilemeyen (`BULUNAMADI / ERİŞİLEMEDİ`):** 0
+- **Bayat İddia Sayısı (`bugün > review_at`):** 0
+- **Bir Sonraki Yeniden İnceleme (`review_at`):** `2027-01-10`
