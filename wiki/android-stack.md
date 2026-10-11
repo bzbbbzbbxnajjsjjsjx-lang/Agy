@@ -4,7 +4,7 @@ tags: [stack, surum]
 source_url: https://developer.android.com/build/releases/gradle-plugin
 verified_at: 2026-10-11 # En eski satır doğrulama tarihi (satır bazında doğrulama)
 review_at: 2027-01-10
-confidence: VERIFIED
+confidence: PARTIAL
 verification_mode: claim_level
 claims:
   - id: claim-agp-version
@@ -99,7 +99,7 @@ claims:
 
   - id: claim-compile-target-sdk
     claim: "compileSdk ve targetSdk hedef API seviyesi 37'dir."
-    source_url: PROJE_KARARI
+    source_url: null
     verified_at: null
     review_at: 2027-01-10
     confidence: PROJE_KARARI
@@ -108,7 +108,7 @@ claims:
 
   - id: claim-min-sdk
     claim: "minSdk asgari desteklenen sürüm 24 (Android 7.0)'tür."
-    source_url: PROJE_KARARI
+    source_url: null
     verified_at: null
     review_at: 2027-01-10
     confidence: PROJE_KARARI

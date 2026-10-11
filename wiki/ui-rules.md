@@ -2,7 +2,7 @@
 title: UI Kuralları ve Yasaklar
 tags: [ui, yasak]
 last_reviewed: 2026-10-11
-confidence: INFERRED
+confidence: PARTIAL
 verification_mode: claim_level
 claims:
   - id: claim-ui-no-material-icons
@@ -25,7 +25,7 @@ claims:
 
   - id: claim-ui-theme-raw-values
     claim: "Ham renk (Color(0xFF..)) ve ham dp/sp YALNIZ ui/theme/ altında tanımlanır (Color.kt, Type.kt, Dimens.kt). Composable'ların içinde yasak; oralarda MaterialTheme.colorScheme / MaterialTheme.typography / Dimens kullanılır."
-    source_url: PROJE_KARARI
+    source_url: null
     verified_at: null
     review_at: 2027-01-10
     confidence: PROJE_KARARI
@@ -33,22 +33,22 @@ claims:
     evidence: "Dahili tasarım sistemi ve token izolasyonu kuralı; dış doğrulama iddia edilmez."
 
   - id: claim-ui-mandatory-preview
-    claim: "Oluşturulan her Composable fonksiyonun açık/koyu temayı doğrulayan bağımsız bir @Preview fonksiyonu olmak zorundadır."
-    source_url: PROJE_KARARI
+    claim: "Oluşturulan her Composable fonksiyonun bağımsız bir @Preview fonksiyonu olmak zorundadır."
+    source_url: null
     verified_at: null
     review_at: 2027-01-10
     confidence: PROJE_KARARI
     status: "PROJE KARARI"
-    evidence: "Depo içi kod hijyeni ve görsel doğrulama standardı; dış doğrulama iddia edilmez."
+    evidence: "kaynak özelliği tanıtıyor, zorunluluk bizim kararımız"
 
   - id: claim-ui-strings-xml
     claim: "UI içinde doğrudan sabit metin (hardcoded text) yazılamaz; tüm metinler res/values/strings.xml dosyasından stringResource ile çekilir."
-    source_url: PROJE_KARARI
+    source_url: null
     verified_at: null
     review_at: 2027-01-10
     confidence: PROJE_KARARI
     status: "PROJE KARARI"
-    evidence: "Depo içi yerelleştirme ve temiz kod standardı; dış doğrulama iddia edilmez."
+    evidence: "kaynak özelliği tanıtıyor, zorunluluk bizim kararımız"
 ---
 
 # UI Kuralları ve Yasaklar
@@ -70,9 +70,9 @@ Bu dosya, Jetpack Compose arayüz geliştirmelerinde uyulması zorunlu tasarım,
 
 | İddia ID | Kural İfadesi | Kaynak | Durum | Gerekçe / Standart |
 | :--- | :--- | :---: | :---: | :--- |
-| `claim-ui-theme-raw-values` | **Ham renk (`Color(0xFF..)`) ve ham dp/sp YALNIZ `ui/theme/` altında tanımlanır (`Color.kt`, `Type.kt`, `Dimens.kt`). Composable'ların içinde yasak; oralarda `MaterialTheme.colorScheme` / `MaterialTheme.typography` / `Dimens` kullanılır.** | Proje kararı | `PROJE KARARI` | Token izolasyonu ve tema tutarlılığı. |
-| `claim-ui-mandatory-preview` | **Her Composable fonksiyon için açık ve koyu tema durumlarını test eden bağımsız bir `@Preview` yazılmalıdır.** | Proje kararı | `PROJE KARARI` | Hızlı UI doğrulaması ve regresyon önleme. |
-| `claim-ui-strings-xml` | **UI içinde tırnak içinde sabit metin (hardcoded) yazılamaz; metinler `res/values/strings.xml` üzerinden `stringResource` ile çekilir.** | Proje kararı | `PROJE KARARI` | Yerelleştirme ve çoklu dil hazırlığı. |
+| `claim-ui-theme-raw-values` | **Ham renk (`Color(0xFF..)`) ve ham dp/sp YALNIZ `ui/theme/` altında tanımlanır (`Color.kt`, `Type.kt`, `Dimens.kt`). Composable'ların içinde yasak; oralarda `MaterialTheme.colorScheme` / `MaterialTheme.typography` / `Dimens` kullanılır.** | - | `PROJE KARARI` | Token izolasyonu ve tema tutarlılığı. |
+| `claim-ui-mandatory-preview` | **Her Composable fonksiyon için açık ve koyu tema durumlarını test eden bağımsız bir `@Preview` yazılmalıdır.** | - | `PROJE KARARI` | Kaynak özelliği tanıtıyor, zorunluluk bizim kararımız. |
+| `claim-ui-strings-xml` | **UI içinde tırnak içinde sabit metin (hardcoded) yazılamaz; metinler `res/values/strings.xml` üzerinden `stringResource` ile çekilir.** | - | `PROJE KARARI` | Kaynak özelliği tanıtıyor, zorunluluk bizim kararımız. |
 
 > [!IMPORTANT]
 > Yukarıdaki 3 kural deponun dahili geliştirme disiplinidir; dış kaynak iddia edilmez.

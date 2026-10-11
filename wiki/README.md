@@ -33,7 +33,8 @@ claims:
 - `verified_at`: İddianın bu kaynaktan en son doğrulandığı tarih (`YYYY-MM-DD`).
 - `review_at`: İddianın yeniden teyit edilmesi gereken son geçerlilik tarihi (`YYYY-MM-DD`).
 - `confidence`: Güven seviyesi:
-  - `VERIFIED`: Resmî kaynaktan doğrudan teyit edilmiş iddia.
+  - `VERIFIED`: Resmî kaynaktan doğrudan teyit edilmiş iddia (`source_url` zorunlu).
+  - `PROJE_KARARI`: Depo içi mimari, tasarım veya kabul kararları (dış resmî doğrulama aranmaz; `source_url: null` olarak bırakılır).
   - `INFERRED`: Resmî kaynaktan mantıksal çıkarım yoluyla türetilmiş iddia.
   - `UNVERIFIED`: Kaynaksız veya henüz resmî kaynaktan teyit edilmemiş iddia.
 - `superseded_by`: (Opsiyonel) Bu iddia güncellendiyse veya yerini yeni bir iddia aldıysa yeni iddia ID'si.
@@ -41,10 +42,10 @@ claims:
 ## Değişmez İddia Kuralları
 
 1. **Atomik Doğrulama:** Her iddia bağımsız olarak doğrulanır. Bir nottaki iddialardan birinin kaynağına erişilememesi, diğer doğrulanmış iddiaları geçersiz kılmaz.
-2. **Kaynak Şartı:** `source_url` olmadan hiçbir iddia `confidence: VERIFIED` olamaz (en fazla `UNVERIFIED` olur).
+2. **Kaynak Şartı:** `source_url` olmadan hiçbir iddia `confidence: VERIFIED` olamaz (en fazla `UNVERIFIED` olur). Proje kararlarında ise `source_url: null` yazılır ve `confidence: PROJE_KARARI` atanır.
 3. **İddia Düzeyinde Bayatlık:** Bir iddianın `review_at` tarihi geçmişse (`bugün > review_at`), yalnız o iddia **BAYAT** sayılır ve brief'lerde uyarı etiketiyle çıkar.
 4. **Tek Gerçeklik ve `superseded_by`:** Aynı iddia iki farklı yere yazılamaz. İddia değiştiğinde (ör. kütüphane sürümü yükseldiğinde veya API kaldırıldığında) eski iddia silinmez; yeni iddia eklenir veya eski iddiaya `superseded_by: <yeni-iddia-id>` atanır.
 5. **Not Düzeyinde Türetilmiş Durum:**
    - **Tüm iddialar `VERIFIED`** → Not **TAM DOĞRULANMIŞ** (`VERIFIED`).
-   - **En az bir iddia `UNVERIFIED` / `INFERRED`** → Not **KISMİ DOĞRULANMIŞ** (`PARTIAL`).
+   - **İçinde `PROJE_KARARI` ya da `INFERRED` olan not** → Not **KISMİ DOĞRULANMIŞ** (`PARTIAL`).
    - **Herhangi bir iddia bayat** → Not **DİKKAT (BAYAT İDDİA İÇERİR)**.

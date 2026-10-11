@@ -2,7 +2,7 @@
 title: Mimari ve Kabul Kriterleri
 tags: [kabul, mimari]
 last_reviewed: 2026-10-11
-confidence: INFERRED
+confidence: PARTIAL
 verification_mode: claim_level
 claims:
   - id: claim-arch-separation-of-concerns
@@ -37,44 +37,57 @@ claims:
     confidence: VERIFIED
     evidence: "State flows down and events flow up."
 
-  - id: claim-arch-layer-viewmodel
-    claim: "I/O, ağ veya veritabanı işlemleri Composable içinde yürütülemez; UI Katmanı (ViewModel) ve Veri Katmanı ayrılmalıdır."
+  - id: claim-arch-layers
+    claim: "Modern Android uygulama mimarisinde UI katmanı (presentation) ve Veri katmanı (data layer) olmak üzere iki temel katman bulunur."
     source_url: https://developer.android.com/topic/architecture
     verified_at: 2026-10-11
     review_at: 2027-01-10
     confidence: VERIFIED
-    evidence: "Modern app architecture: UI layer and Data layer separation"
+    evidence: "In a typical app architecture, the UI layer gets the application data from the data layer or from the optional domain layer, which sits between the UI layer and the data layer."
 
-  - id: claim-rule-version-catalog
-    claim: "Tüm kütüphane ve eklenti sürümleri istisnasız gradle/libs.versions.toml dosyasında tutulmalıdır."
-    source_url: PROJE_KARARI
+  - id: claim-rule-no-composable-io
+    claim: "Composable fonksiyonlar içinde doğrudan dosya/veritabanı I/O veya ağ çağrısı yapılamaz; arka plan işleri Coroutine Dispatchers ve ViewModel'e devredilmelidir."
+    source_url: null
     verified_at: null
     review_at: 2027-01-10
     confidence: PROJE_KARARI
+    status: "PROJE KARARI"
+    evidence: "Depo içi main-thread hijyeni ve performans kabul standardı; dış doğrulama iddia edilmez."
+
+  - id: claim-rule-version-catalog
+    claim: "Tüm kütüphane ve eklenti sürümleri istisnasız gradle/libs.versions.toml dosyasında tutulmalıdır."
+    source_url: null
+    verified_at: null
+    review_at: 2027-01-10
+    confidence: PROJE_KARARI
+    status: "PROJE KARARI"
     evidence: "Depo içi bağımlılık tekilleştirme standardı."
 
   - id: claim-rule-compose-bom-platform
     claim: "Compose bağımlılıkları platform(libs.androidx.compose.bom) ile sürüm belirtilmeden eklenmelidir."
-    source_url: PROJE_KARARI
+    source_url: null
     verified_at: null
     review_at: 2027-01-10
     confidence: PROJE_KARARI
+    status: "PROJE KARARI"
     evidence: "Depo içi sürüm çakışması engelleme standardı."
 
   - id: claim-rule-state-preservation
     claim: "Ekran döndürme ve süreç sonlanmasında (process death) durum rememberSaveable veya StateFlow/SavedStateHandle ile korunmalıdır."
-    source_url: PROJE_KARARI
+    source_url: null
     verified_at: null
     review_at: 2027-01-10
     confidence: PROJE_KARARI
+    status: "PROJE KARARI"
     evidence: "Depo içi durum sürekliliği kabul kriteri."
 
   - id: claim-rule-assemble-debug
     claim: "Kod değişiklikleri sonrası ./gradlew assembleDebug hatasız derlenmeli veya derlenmediği açıkça belirtilmelidir."
-    source_url: PROJE_KARARI
+    source_url: null
     verified_at: null
     review_at: 2027-01-10
     confidence: PROJE_KARARI
+    status: "PROJE KARARI"
     evidence: "Değişmez kural 3 gereği derleme doğrulaması standardı."
 ---
 
@@ -92,7 +105,7 @@ Bu dosya, bu depoda üretilecek tüm Android uygulamalarının sağlaması gerek
 | `claim-arch-drive-ui-models` | **UI'ı Modelden Sürmek** | `developer.android.com/topic/architecture` | `VERIFIED` | *"Another important principle is to drive your UI from data models, preferably persistent models."* |
 | `claim-arch-ssot` | **Tek Doğruluk Kaynağı (SSOT)** | `developer.android.com/topic/architecture` | `VERIFIED` | *"When a new data type is defined in your app, assign a single source of truth (SSOT)..."* |
 | `claim-arch-udf` | **Tek Yönlü Veri Akışı (UDF)** | `developer.android.com/topic/architecture` | `VERIFIED` | *"State flows down and events flow up."* |
-| `claim-arch-layer-viewmodel` | **Katman Ayrımı ve ViewModel** | `developer.android.com/topic/architecture` | `VERIFIED` | Modern app architecture: UI layer and Data layer separation; Composable içinde I/O yapılmaz. |
+| `claim-arch-layers` | **Katman Ayrımı (UI Layer / Data Layer)** | `developer.android.com/topic/architecture` | `VERIFIED` | *"In a typical app architecture, the UI layer gets the application data from the data layer or from the optional domain layer, which sits between the UI layer and the data layer."* |
 
 ---
 
@@ -100,7 +113,8 @@ Bu dosya, bu depoda üretilecek tüm Android uygulamalarının sağlaması gerek
 
 | İddia ID | Standart | Kaynak | Durum | Gerekçe / Açıklama |
 | :--- | :--- | :---: | :---: | :--- |
-| `claim-rule-version-catalog` | Sürümler yalnızca `gradle/libs.versions.toml` dosyasında tutulur. | Proje kararı | `PROJE KARARI` | Sürüm tekilleştirme standardı |
-| `claim-rule-compose-bom-platform` | Compose bağımlılıkları `compose-bom` platformu ile eklenir. | Proje kararı | `PROJE KARARI` | Alt kütüphane sürüm çakışmalarını önleme |
-| `claim-rule-state-preservation` | Durumlar `rememberSaveable` ve ViewModel ile korunur. | Proje kararı | `PROJE KARARI` | Kullanıcı deneyimi ve süreç sonlanması dayanıklılığı |
-| `claim-rule-assemble-debug` | Değişiklik sonrası `./gradlew assembleDebug` hatasız derlenmelidir. | Proje kararı | `PROJE KARARI` | Değişmez kural 3 gereği derleme doğrulaması |
+| `claim-rule-no-composable-io` | Composable içinde doğrudan I/O veya ağ çağrısı yasaktır; ViewModel kullanılır. | - | `PROJE KARARI` | Main thread hijyeni ve takılma (jank) engelleme |
+| `claim-rule-version-catalog` | Sürümler yalnızca `gradle/libs.versions.toml` dosyasında tutulur. | - | `PROJE KARARI` | Sürüm tekilleştirme standardı |
+| `claim-rule-compose-bom-platform` | Compose bağımlılıkları `compose-bom` platformu ile eklenir. | - | `PROJE KARARI` | Alt kütüphane sürüm çakışmalarını önleme |
+| `claim-rule-state-preservation` | Durumlar `rememberSaveable` ve ViewModel ile korunur. | - | `PROJE KARARI` | Kullanıcı deneyimi ve süreç sonlanması dayanıklılığı |
+| `claim-rule-assemble-debug` | Değişiklik sonrası `./gradlew assembleDebug` hatasız derlenmelidir. | - | `PROJE KARARI` | Değişmez kural 3 gereği derleme doğrulaması |
