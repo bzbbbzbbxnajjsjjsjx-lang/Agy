@@ -33,22 +33,22 @@ claims:
     evidence: "Dahili tasarım sistemi ve token izolasyonu kuralı; dış doğrulama iddia edilmez."
 
   - id: claim-ui-mandatory-preview
-    claim: "Oluşturulan her Composable fonksiyonun bağımsız bir @Preview fonksiyonu olmak zorundadır."
-    source_url: https://developer.android.com/develop/ui/compose/tooling/previews
-    verified_at: 2026-10-11
+    claim: "Oluşturulan her Composable fonksiyonun açık/koyu temayı doğrulayan bağımsız bir @Preview fonksiyonu olmak zorundadır."
+    source_url: PROJE_KARARI
+    verified_at: null
     review_at: 2027-01-10
-    confidence: VERIFIED
-    status: VERIFIED
-    evidence: "Preview your UI with composable previews in Android Studio"
+    confidence: PROJE_KARARI
+    status: "PROJE KARARI"
+    evidence: "Depo içi kod hijyeni ve görsel doğrulama standardı; dış doğrulama iddia edilmez."
 
   - id: claim-ui-strings-xml
     claim: "UI içinde doğrudan sabit metin (hardcoded text) yazılamaz; tüm metinler res/values/strings.xml dosyasından stringResource ile çekilir."
-    source_url: https://developer.android.com/guide/topics/resources/string-resource
-    verified_at: 2026-10-11
+    source_url: PROJE_KARARI
+    verified_at: null
     review_at: 2027-01-10
-    confidence: VERIFIED
-    status: VERIFIED
-    evidence: "A string resource provides text strings for your application with optional text styling and formatting."
+    confidence: PROJE_KARARI
+    status: "PROJE KARARI"
+    evidence: "Depo içi yerelleştirme ve temiz kod standardı; dış doğrulama iddia edilmez."
 ---
 
 # UI Kuralları ve Yasaklar
@@ -61,18 +61,18 @@ Bu dosya, Jetpack Compose arayüz geliştirmelerinde uyulması zorunlu tasarım,
 
 | İddia ID | Kural / İlke | Doğrulama Kaynağı | Durum | Doğrulama Notu |
 | :--- | :--- | :--- | :---: | :--- |
-| `claim-ui-no-material-icons` | `material-icons-*` kullanımı yasaktır (kaldırıldı). | `developer.android.com/jetpack/androidx/releases/compose-material3` | **AYNI (kaynak düzeltildi)** | Kütüphane sürüm notlarında resmi kaldırma duyurusu. |
+| `claim-ui-no-material-icons` | `material-icons-*` kullanımı yasaktır (kaldırıldı). | `developer.android.com/jetpack/androidx/releases/compose-material3` | **AYNI (kaynak düzeltildi)** | Kütüphane sürüm notlarında resmî kaldırma duyurusu. |
 | `claim-ui-material-symbols-xml` | İkonlar Material Symbols XML olarak `res/drawable` altına eklenir. | `developer.android.com/jetpack/androidx/releases/compose-material3` | **AYNI (kaynak düzeltildi)** | fonts.google.com/icons yönlendirmesi teyitli. |
-| `claim-ui-mandatory-preview` | Her Composable için açık/koyu `@Preview` zorunludur. | `developer.android.com/develop/ui/compose/tooling/previews` | `VERIFIED` | Android Studio Compose Preview standartları. |
-| `claim-ui-strings-xml` | Sabit metin (hardcoded) yasaktır; `stringResource(R.string...)` zorunludur. | `developer.android.com/guide/topics/resources/string-resource` | `VERIFIED` | String Resources yerelleştirme standardı. |
 
 ---
 
-## 2. Proje Kuralları (Dış Doğrulama Yok)
+## 2. Proje Kuralları (Dış Doğrulama Yok — Dahili Standartlar)
 
-| İddia ID | Kural İfadesi | Kaynak | Durum |
-| :--- | :--- | :---: | :---: |
-| `claim-ui-theme-raw-values` | **Ham renk (`Color(0xFF..)`) ve ham dp/sp YALNIZ `ui/theme/` altında tanımlanır (`Color.kt`, `Type.kt`, `Dimens.kt`). Composable'ların içinde yasak; oralarda `MaterialTheme.colorScheme` / `MaterialTheme.typography` / `Dimens` kullanılır.** | Proje kararı | `PROJE KARARI` |
+| İddia ID | Kural İfadesi | Kaynak | Durum | Gerekçe / Standart |
+| :--- | :--- | :---: | :---: | :--- |
+| `claim-ui-theme-raw-values` | **Ham renk (`Color(0xFF..)`) ve ham dp/sp YALNIZ `ui/theme/` altında tanımlanır (`Color.kt`, `Type.kt`, `Dimens.kt`). Composable'ların içinde yasak; oralarda `MaterialTheme.colorScheme` / `MaterialTheme.typography` / `Dimens` kullanılır.** | Proje kararı | `PROJE KARARI` | Token izolasyonu ve tema tutarlılığı. |
+| `claim-ui-mandatory-preview` | **Her Composable fonksiyon için açık ve koyu tema durumlarını test eden bağımsız bir `@Preview` yazılmalıdır.** | Proje kararı | `PROJE KARARI` | Hızlı UI doğrulaması ve regresyon önleme. |
+| `claim-ui-strings-xml` | **UI içinde tırnak içinde sabit metin (hardcoded) yazılamaz; metinler `res/values/strings.xml` üzerinden `stringResource` ile çekilir.** | Proje kararı | `PROJE KARARI` | Yerelleştirme ve çoklu dil hazırlığı. |
 
 > [!IMPORTANT]
-> Ham renk ve ölçü kuralı deponun dahili token disiplinidir; dış doğrulama iddia edilmez.
+> Yukarıdaki 3 kural deponun dahili geliştirme disiplinidir; dış kaynak iddia edilmez.
