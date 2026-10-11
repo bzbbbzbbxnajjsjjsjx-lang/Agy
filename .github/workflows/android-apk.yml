@@ -27,14 +27,19 @@ jobs:
           gradle-version: '9.6.0'
       - name: Wiki iddia kontrolu
         run: python3 scripts/check_claims.py
-      - name: Debug APK derle
+      - name: Debug ve Release APK derle
         if: steps.kontrol.outputs.var == 'true'
         run: |
-          if [ -f gradlew ]; then chmod +x gradlew && ./gradlew assembleDebug --no-daemon; else gradle assembleDebug --no-daemon; fi
+          if [ -f gradlew ]; then chmod +x gradlew && ./gradlew assembleDebug assembleRelease --no-daemon; else gradle assembleDebug assembleRelease --no-daemon; fi
       - if: steps.kontrol.outputs.var == 'true'
         uses: actions/upload-artifact@v7
         with:
           name: app-debug-apk
           path: '**/build/outputs/apk/debug/*.apk'
+      - if: steps.kontrol.outputs.var == 'true'
+        uses: actions/upload-artifact@v7
+        with:
+          name: app-release-apk
+          path: '**/build/outputs/apk/release/*.apk'
       - if: steps.kontrol.outputs.var == 'false'
         run: echo "::notice::gradlew yok - Gradle projesi henuz kurulmadi."
