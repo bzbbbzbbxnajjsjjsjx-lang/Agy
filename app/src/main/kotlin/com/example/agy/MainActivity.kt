@@ -45,6 +45,10 @@ class MainActivity : ComponentActivity() {
             NotesApp(
                 uiState = uiState,
                 onAddNote = viewModel::addNote,
+                onUpdateNote = viewModel::updateNote,
+                onStartEditing = viewModel::startEditing,
+                onCancelEditing = viewModel::cancelEditing,
+                onSearchQueryChange = viewModel::setSearchQuery,
                 onDeleteNote = viewModel::deleteNote,
                 onNavigateToSettings = { viewModel.navigateTo(CurrentScreen.SETTINGS) },
                 onThemeSelected = viewModel::setThemeMode,
@@ -62,6 +66,10 @@ class MainActivity : ComponentActivity() {
 fun NotesApp(
     uiState: NotesUiState,
     onAddNote: (String) -> Unit,
+    onUpdateNote: (String, String) -> Unit,
+    onStartEditing: (Note) -> Unit,
+    onCancelEditing: () -> Unit,
+    onSearchQueryChange: (String) -> Unit,
     onDeleteNote: (String) -> Unit,
     onNavigateToSettings: () -> Unit,
     onThemeSelected: (ThemeMode) -> Unit,
@@ -78,8 +86,14 @@ fun NotesApp(
         Scaffold(modifier = modifier.fillMaxSize()) { innerPadding ->
             when (uiState.currentScreen) {
                 CurrentScreen.NOTES -> NotesScreen(
-                    notes = uiState.notes,
+                    notes = uiState.filteredNotes,
+                    searchQuery = uiState.searchQuery,
+                    onSearchQueryChange = onSearchQueryChange,
+                    editingNote = uiState.editingNote,
                     onAddNote = onAddNote,
+                    onUpdateNote = onUpdateNote,
+                    onStartEditing = onStartEditing,
+                    onCancelEditing = onCancelEditing,
                     onDeleteNote = onDeleteNote,
                     onNavigateToSettings = onNavigateToSettings,
                     modifier = Modifier
@@ -112,6 +126,10 @@ private fun NotesAppPreviewLight() {
             currentScreen = CurrentScreen.NOTES
         ),
         onAddNote = {},
+        onUpdateNote = { _, _ -> },
+        onStartEditing = {},
+        onCancelEditing = {},
+        onSearchQueryChange = {},
         onDeleteNote = {},
         onNavigateToSettings = {},
         onThemeSelected = {},
@@ -132,6 +150,10 @@ private fun NotesAppPreviewDark() {
             currentScreen = CurrentScreen.NOTES
         ),
         onAddNote = {},
+        onUpdateNote = { _, _ -> },
+        onStartEditing = {},
+        onCancelEditing = {},
+        onSearchQueryChange = {},
         onDeleteNote = {},
         onNavigateToSettings = {},
         onThemeSelected = {},

@@ -41,7 +41,7 @@ class NoteRepository(private val filesDir: File) {
                     )
                 )
             }
-            list
+            list.sortedByDescending { it.createdAt }
         } catch (_: Exception) {
             emptyList()
         }

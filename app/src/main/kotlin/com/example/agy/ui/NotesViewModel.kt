@@ -31,8 +31,20 @@ data class NotesUiState(
     val notes: List<Note> = emptyList(),
     val themeMode: ThemeMode = ThemeMode.SYSTEM,
     val currentScreen: CurrentScreen = CurrentScreen.NOTES,
-    val isLoading: Boolean = true
-)
+    val isLoading: Boolean = true,
+    val searchQuery: String = "",
+    val editingNote: Note? = null
+) {
+    /**
+     * Arama sorgusuna göre filtrelenmiş not listesi.
+     */
+    val filteredNotes: List<Note>
+        get() = if (searchQuery.isBlank()) {
+            notes
+        } else {
+            notes.filter { it.text.contains(searchQuery.trim(), ignoreCase = true) }
+        }
+}
 
 /**
  * UI durumlarını yöneten ve dosya/tercih I/O işlemlerini Dispatchers.IO
@@ -79,7 +91,7 @@ class NotesViewModel(
         )
 
         viewModelScope.launch {
-            val updatedNotes = _uiState.value.notes + newNote
+            val updatedNotes = listOf(newNote) + _uiState.value.notes
             _uiState.update { it.copy(notes = updatedNotes) }
             withContext(Dispatchers.IO) {
                 repository.saveNotes(updatedNotes)
@@ -87,10 +99,52 @@ class NotesViewModel(
         }
     }
 
+    fun updateNote(noteId: String, newText: String) {
+        val trimmed = newText.trim()
+        if (trimmed.isEmpty()) return
+
+        viewModelScope.launch {
+            val updatedNotes = _uiState.value.notes.map { note ->
+                if (note.id == noteId) {
+                    note.copy(text = trimmed, createdAt = System.currentTimeMillis())
+                } else {
+                    note
+                }
+            }.sortedByDescending { it.createdAt }
+
+            _uiState.update {
+                it.copy(
+                    notes = updatedNotes,
+                    editingNote = null
+                )
+            }
+            withContext(Dispatchers.IO) {
+                repository.saveNotes(updatedNotes)
+            }
+        }
+    }
+
+    fun startEditing(note: Note) {
+        _uiState.update { it.copy(editingNote = note) }
+    }
+
+    fun cancelEditing() {
+        _uiState.update { it.copy(editingNote = null) }
+    }
+
+    fun setSearchQuery(query: String) {
+        _uiState.update { it.copy(searchQuery = query) }
+    }
+
     fun deleteNote(noteId: String) {
         viewModelScope.launch {
             val updatedNotes = _uiState.value.notes.filterNot { it.id == noteId }
-            _uiState.update { it.copy(notes = updatedNotes) }
+            _uiState.update {
+                it.copy(
+                    notes = updatedNotes,
+                    editingNote = if (it.editingNote?.id == noteId) null else it.editingNote
+                )
+            }
             withContext(Dispatchers.IO) {
                 repository.saveNotes(updatedNotes)
             }

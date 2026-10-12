@@ -1,26 +1,29 @@
-# Görev: Aşama D — Not Uygulaması
+# Görev: Aşama E — Not Uygulaması Geliştirmeleri (Arama, Düzenleme, Onaylı Silme)
 
 ## Görev Özeti
-Aşama A, B, C tamamlandıktan sonra bu aşamada aşağıdaki adımlar uygulanır:
+Aşama D'de tamamlanan temel not uygulaması üzerine kullanıcı deneyimini ve veri bütünlüğünü güçlendiren geliştirmeler eklenir:
 
-1. **D0 — Kontrol Script'i (`scripts/check_claims.py`):**
-   - Bayat VERIFIED iddia "kontrol edilen" sayısına dahil edilmez.
-   - Kaynaksız VERIFIED iddia "VERIFIED (KAYNAK YOK!)" ve ÇELİŞKİ sayılır; çıkış kodu 1 döner.
-   - Wiki frontmatter'larından mükerrer `status:` alanı silindi; yalnızca `confidence` okunur.
-   - `.github/workflows/android-apk.yml` içine derleme öncesi `Wiki iddia kontrolu` adımı eklendi.
-   - Script `$HOME` altındaki geçici notla test edildi.
-2. **D1 — Brief Güncellemesi (`briefs/2026-10-12-not-uygulamasi.md`):**
-   - Ham renk ve dp/sp kuralı güncellendi (ham değer YALNIZ `ui/theme/` altında).
-   - "Depolama yaklaşımı" (filesDir + org.json + SharedPreferences) eklendi.
-3. **D2 — Not Uygulaması Geliştirmesi:**
-   - Ana ekran: Not listesi (`LazyColumn`), not ekleme (metin alanı + "Ekle" butonu), not silme.
-   - Ayarlar ekranı: Tema seçimi (Sistem / Açık / Koyu, anında uygulanır).
-   - Depolama: `filesDir/notes.json` (`org.json`), SharedPreferences (`ThemePreference`), I/O `Dispatchers.IO` üzerinde.
-   - Ekran rotasyonunda yazılan metin korunur (`rememberSaveable`).
-   - İkon yerine metin butonları, `strings.xml` ve `Dimens` token kullanımı.
-   - Bağımlılıklar: `lifecycle-viewmodel-compose` ve `lifecycle-runtime-compose` (`2.11.0`).
+1. **E0 — Hazırlık & Brief:**
+   - `briefs/2026-10-12-not-uygulamasi-gelistirmeler.md` teknik brief'i oluşturulur.
+2. **E1 — Arama ve Gerçek Zamanlı Filtreleme:**
+   - Arama metin alanı eklenir, büyük/küçük harf duyarsız canlı filtreleme yapılır.
+   - Eşleşen not yoksa boş arama durumu gösterilir. Arama temizleme butonu sunulur.
+3. **E2 — Not Düzenleme:**
+   - Her not için düzenleme aksiyonu eklenir. Düzenleme modunda metin alana yüklenir, "Güncelle" ve "Vazgeç" butonları aktif olur.
+   - `NoteRepository` üzerinden yerel JSON dosyasında atomik güncelleme yapılır.
+4. **E3 — Zaman Damgası & Sıralama:**
+   - Notlar oluşturulma / son güncellenme tarihine göre en yeniden eskiye doğru sıralı listelenir. Not kartında tarih/saat gösterilir.
+5. **E4 — Silme Onay Diyaloğu:**
+   - Kazara veri kaybını önlemek için silme butonuna tıklandığında `AlertDialog` ile onay istenir.
+6. **E5 — Katı Mimari & UI Kısıtları:**
+   - `SettingsScreen.kt`, `ui/theme/*`, `app/build.gradle.kts`, `gradle/libs.versions.toml`, `.github/workflows/android-apk.yml` dosyalarına dokunulmaz.
+   - Yeni kütüphane eklenmez. Ham dp / renk Composable'da kullanılmaz.
+   - Tüm metinler `strings.xml`'den çekilir. Composable'lar için `@Preview` zorunludur.
+7. **E6 — Doğrulama ve CI:**
+   - `python3 scripts/check_claims.py` sıfır çelişki ile doğrulanır.
+   - Git push sonrası GitHub Actions CI üzerinde debug ve release APK derlemesi doğrulanır.
 
 ## Bitirme Komutu
 ```bash
-git add -A && git commit -m "Asama D: not uygulamasi + script duzeltmeleri" && git push
+git add -A && git commit -m "feat: not arama, duzenleme, zaman damgasi ve onayli silme" && git push
 ```

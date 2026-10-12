@@ -12,4 +12,13 @@
     <string name="theme_system">Sistem Varsayılanı</string>
     <string name="theme_light">Açık Tema</string>
     <string name="theme_dark">Koyu Tema</string>
+    <string name="search_hint">Notlarda ara…</string>
+    <string name="clear_search">Temizle</string>
+    <string name="no_search_results">Aramanızla eşleşen not bulunamadı.</string>
+    <string name="edit_note">Düzenle</string>
+    <string name="update_note">Güncelle</string>
+    <string name="cancel">Vazgeç</string>
+    <string name="delete_dialog_title">Notu Sil</string>
+    <string name="delete_dialog_message">Bu not silinecektir. Emin misiniz?</string>
+    <string name="delete_confirm">Sil</string>
 </resources>
