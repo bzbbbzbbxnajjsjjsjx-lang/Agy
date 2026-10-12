@@ -21,4 +21,15 @@
     <string name="delete_dialog_title">Notu Sil</string>
     <string name="delete_dialog_message">Bu not silinecektir. Emin misiniz?</string>
     <string name="delete_confirm">Sil</string>
+
+    <!-- Sohbet ve Gezinme Dizgeleri -->
+    <string name="tab_chat">Sohbet</string>
+    <string name="tab_notes">Notlar</string>
+    <string name="chat_title">Asistan</string>
+    <string name="chat_input_hint">Asistana mesaj yazın…</string>
+    <string name="send_message">Gönder</string>
+    <string name="chat_empty_state">Henüz mesaj yok. Asistana bir soru sorun veya notlarınız hakkında konuşun.</string>
+    <string name="chat_thinking">Asistan yanıt hazırlıyor…</string>
+    <string name="role_user">Siz</string>
+    <string name="role_assistant">Asistan</string>
 </resources>

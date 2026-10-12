@@ -53,7 +53,8 @@ fun NotesScreen(
     onCancelEditing: () -> Unit,
     onDeleteNote: (String) -> Unit,
     onNavigateToSettings: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    showHeader: Boolean = true
 ) {
     var noteInput by rememberSaveable { mutableStateOf("") }
     var noteToDelete by remember { mutableStateOf<Note?>(null) }
@@ -112,22 +113,24 @@ fun NotesScreen(
             .fillMaxSize()
             .padding(Dimens.spacingMedium)
     ) {
-        // Üst Başlık ve Ayarlar Butonu
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                text = stringResource(R.string.notes_title),
-                style = MaterialTheme.typography.headlineMedium,
-                color = MaterialTheme.colorScheme.onBackground
-            )
-            TextButton(onClick = onNavigateToSettings) {
+        // Üst Başlık ve Ayarlar Butonu (Scaffold topBar kullanılmadığında gösterilir)
+        if (showHeader) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 Text(
-                    text = stringResource(R.string.settings_title),
-                    style = MaterialTheme.typography.labelLarge
+                    text = stringResource(R.string.notes_title),
+                    style = MaterialTheme.typography.headlineMedium,
+                    color = MaterialTheme.colorScheme.onBackground
                 )
+                TextButton(onClick = onNavigateToSettings) {
+                    Text(
+                        text = stringResource(R.string.settings_title),
+                        style = MaterialTheme.typography.labelLarge
+                    )
+                }
             }
         }
 

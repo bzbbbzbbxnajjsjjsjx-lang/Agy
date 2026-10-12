@@ -19,4 +19,9 @@ object Dimens {
     val cardCornerRadius: Dp = 12.dp
     val cardElevation: Dp = 2.dp
     val minTouchTarget: Dp = 48.dp
+
+    val messageBubbleCornerRadius: Dp = 16.dp
+    val messageBubbleCornerRadiusSmall: Dp = 4.dp
+    val bubblePaddingHorizontal: Dp = 12.dp
+    val bubblePaddingVertical: Dp = 8.dp
 }

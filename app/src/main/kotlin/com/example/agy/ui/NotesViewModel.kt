@@ -20,6 +20,7 @@ import java.util.UUID
  * Aktif görüntülenen ekran durumu.
  */
 enum class CurrentScreen {
+    CHAT,
     NOTES,
     SETTINGS
 }
@@ -30,7 +31,7 @@ enum class CurrentScreen {
 data class NotesUiState(
     val notes: List<Note> = emptyList(),
     val themeMode: ThemeMode = ThemeMode.SYSTEM,
-    val currentScreen: CurrentScreen = CurrentScreen.NOTES,
+    val currentScreen: CurrentScreen = CurrentScreen.CHAT,
     val isLoading: Boolean = true,
     val searchQuery: String = "",
     val editingNote: Note? = null
