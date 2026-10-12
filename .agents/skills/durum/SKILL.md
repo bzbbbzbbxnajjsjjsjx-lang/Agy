@@ -5,13 +5,13 @@ description: Wiki'deki tüm iddiaların (claims) tazelik, kaynak ve doğrulama d
 
 # Durum Komutu Talimatı (İddia Bazlı)
 
-Bu skill yalnızca okuma yapar, hiçbir dosyayı değiştirmez.
+DURUM.md'yi elle düzenleme; `python3 scripts/check_claims.py --durum` çalıştır.
 
 ## Yapılacak İşlemler
 
-Durum kontrolü doğrudan `python3 scripts/check_claims.py` komutu çalıştırılarak hızlıca kontrol edilebilir ve raporlanabilir:
+Durum kontrolü doğrudan `python3 scripts/check_claims.py` veya `DURUM.md` dosyasını otomatik üretmek için `python3 scripts/check_claims.py --durum` komutu çalıştırılarak yapılır:
 ```bash
-python3 scripts/check_claims.py
+python3 scripts/check_claims.py --durum
 ```
 
 1. `wiki/` dizini altındaki tüm notları (`*.md`, `README.md` hariç) tara (veya `scripts/check_claims.py` çalıştır).
@@ -33,4 +33,4 @@ python3 scripts/check_claims.py
    - `UNVERIFIED` (kaynaksız / doğrulanmamış) iddia sayısı
    - Bayat iddia sayısı (`bugün > review_at`)
    - Not bazında genel sağlık özeti
-5. **KURAL:** Hiçbir şeyi DEĞİŞTİRME — bu komut sadece okur ve raporlar.
+5. **KURAL:** DURUM.md'yi elle düzenleme; `python3 scripts/check_claims.py --durum` çalıştır.

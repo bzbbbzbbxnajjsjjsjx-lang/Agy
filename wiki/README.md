@@ -25,6 +25,8 @@ claims:
 ---
 ```
 
+Frontmatter kapanış `---` satırından sonra satır sonu ve gövde metni zorunlu; aksi hâlde denetleyici hata verir.
+
 ### İddia Alanları
 
 - `id`: Not içinde benzersiz, kebab-case kimlik (ör. `agp-version`, `ui-no-raw-hex`).

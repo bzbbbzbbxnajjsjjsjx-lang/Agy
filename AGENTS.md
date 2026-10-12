@@ -10,6 +10,8 @@ Bu depo, Android uygulamaları üretmek amacıyla tasarlanmış; bağlam, kanoni
 4. **AYNI BİLGİYİ İKİ YERE YAZMA.** Tek kopya. İkinci kopya zamanla ayrışır.
 5. **Uzun metni terminale yapıştırmıyorum.** Talimatları dosyadan oku.
 6. **Bir şeyi değiştirdiysen neyi değiştirdiğini söyle.** Sessiz değişiklik yok.
+7. **Yerelde Android SDK yoksa derleme kanıtı CI'dır.** Raporda "CI'da derlendi (koşu linki)" yaz. "CI'da derlendi" ≠ "test edildi". Cihazda/emülatörde çalıştırmadıysan "test edildi" YAZMA.
+8. **Wiki'ye not eklediğinde/değiştirdiğinde commit'ten önce `python3 scripts/check_claims.py` çalıştır; exit 0 değilse commit etme.**
 
 ## Geliştirme Döngüsü
 
@@ -21,7 +23,7 @@ görev → bağlam → brief → uygula → doğrula → wiki'ye yaz
 2. **Bağlam:** `wiki/` altındaki ilgili notları tara, kısıtları ve standartları belirle.
 3. **Brief:** Yapılacak işin planını ve kabul kriterlerini netleştir.
 4. **Uygula:** Kod ve konfigürasyon değişikliklerini kurallara uygun biçimde hayata geçir.
-5. **Doğrula:** Derleme (`./gradlew assembleDebug`), test veya statik analiz ile doğrula; neyin yapılıp neyin yapılamadığını açıkça raporla.
+5. **Doğrula:** Derleme (`./gradlew assembleDebug` — yerelde SDK yoksa CI), test veya statik analiz ile doğrula; neyin yapılıp neyin yapılamadığını açıkça raporla.
 6. **Wiki'ye Yaz:** Edinilen kalıcı tecrübeyi veya güncellenen kararları ilgili tekil wiki sayfasına işle.
 
 ## Zorunlu Okumalar ve Yönlendirmeler

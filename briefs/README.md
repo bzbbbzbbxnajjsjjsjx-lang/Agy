@@ -13,13 +13,13 @@ Kaynak Görev: GOREV.md
 - Görevin amacı ve beklenen işlevsellik.
 
 ## 2. Sabitlenmiş Bağımlılıklar ve Sürümler
-(Sürümler yalnız wiki/android-stack.md üzerinden alınır, asla tahmin edilmez)
-- Kotlin: 2.4.21
-- AGP: 9.4.0
-- Compose BOM: 2026.09.00
-- Material 3: 1.4.0 (stabil)
-- compileSdk / targetSdk: 37
-- minSdk: 24
+(Sürüm tablosu brief üretilirken wiki/android-stack.md'den kopyalanır; şablon sürüm içermez.)
+- Kotlin: <wiki'den>
+- AGP: <wiki'den>
+- Compose BOM: <wiki'den>
+- Material 3: <wiki'den>
+- compileSdk / targetSdk: <wiki'den>
+- minSdk: <wiki'den>
 
 ## 3. UI ve Mimari Kısıtlar
 - Material Symbols XML kullanımı (material-icons yasak).
